@@ -42,18 +42,13 @@ route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],fu
     //后台统计页面
     route::get('welcome1','LoginController@welcome1');
 
-    //后台成员列表（静态列表）
+    //后台用户列表（静态列表）
     route::get('memberlist','UserController@index');
 
-    //后台会员列表（动态列表）
-    route::get('memberlist1','LoginController@memberlist1');
-
-    //后台会员添加
+    //后台用户添加
     route::get('memberadd','LoginController@memberadd');
 
-    //后台会员修改
+    //后台用户修改
     route::get('memberedit','LoginController@memberedit');
 
-    //图标对应字体
-    route::get('unicode','LoginController@unicode');
 });
