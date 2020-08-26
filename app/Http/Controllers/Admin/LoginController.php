@@ -61,7 +61,7 @@ class LoginController extends Controller
         }
         $rule=[
             'username'=>'required|between:2,18',
-            'password'=>'required|between:4,18|alpha_num',
+            'password'=>'required|between:6,18|alpha_num',
             'captcha'=>'required|captcha',
         ];
         $validator=Validator::make($input,$rule,$msg);

@@ -36,7 +36,7 @@
                         <dd>
                             <a onclick="xadmin.open('个人信息','http://www.baidu.com')">个人信息</a></dd>
                         <dd>
-                            <a onclick="xadmin.open('切换帐号','http://www.baidu.com')">切换帐号</a></dd>
+                            <a href="{{url('admin/logout')}}">切换账号</a></dd>
                         <dd>
                             <a href="{{url('admin/logout')}}">退出</a></dd>
                     </dl>

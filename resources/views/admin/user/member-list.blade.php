@@ -77,7 +77,7 @@
                                   @foreach($user as $v)
                                   <tr>
                                     <td>
-                                      <input type="checkbox" name="id" value="1"   lay-skin="primary" data-id='{{$v->user_id}}'> 
+                                      <input type="checkbox" name="id" value="{{$v->user_id}}"   lay-skin="primary" data-id='{{$v->user_id}}'> 
                                     </td>
                                     <td>{{$v->user_id}}</td>
                                     <td>{{$v->user_name}}</td>
@@ -188,20 +188,30 @@
       function delAll (argument) {
         // 获取选中的id 
 
-        var ids = [];
+         var ids = [];
 
-        $(".layui-form-checked").not('.header').each(function(i,v){
-            var u=$(v).attr('data-id');
-            ids.push(u);
-        });
+        // $(".layui-form-checked").not('.header').each(function(i,v){
+        //     var u=$(v).attr('data-id');
+        //     ids.push(u);
+        // });
         
 
-        // $('tbody input').each(function(index, el) {
-        //     if($(this).prop('checked')){
-        //        ids.push($(this).val())
+        $('tbody input').each(function(index, v) {
+            if($(this).prop('checked')){
+               ids.push($(this).val())
+            }
+        });
+          
+        // var aa = $('input[name="id"]');
+        // var bb = $('input[name="id"]').length;
+        // // console.log(bb);
+        // var ids = '';
+        // for(i=0;i<bb;i++){
+        //     if($(aa[i]).attr('layui-form-checked')){
+        //         // alert($(aa[i]).attr('value'));
+        //           ids+=$(aa[i]).attr('value')+',';
         //     }
-        // });
-  
+        
         layer.confirm('确认要删除吗？',function(index){
 
           $.get('/admin/user/del',{'ids':ids},function(data){
