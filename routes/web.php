@@ -51,4 +51,13 @@ route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],fu
     //后台用户修改
     route::get('memberedit','LoginController@memberedit');
 
+
+    //角色模块
+    Route::resource('role','RoleController');
+
+    //角色授权路由
+    Route::get('role/auth/{id}','RoleController@auth');
+    Route::post('role/doauth','RoleController@doAuth');
+
 });
+

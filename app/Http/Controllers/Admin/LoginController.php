@@ -88,12 +88,13 @@ class LoginController extends Controller
         } */
         //3.crypt加密
         $str='123456';
-        $crypt_str='eyJpdiI6IkdXOHBuZ3BDSS9wNU01MWNVNEJDOUE9PSIsInZhbHVlIjoiaFZsQmJLaVRjRllleHpUVDJNRHhyQT09IiwibWFjIjoiMWIwNzVjOWRmY2EzOGU3ZTQ1MmRkMjYzZTk4MGY3YzBiODI2MjFjNTU5ODQwNGM3NzZjYWE3N2JlNWU2NWFmNyJ9';
+        // $crypt_str='eyJpdiI6IkdXOHBuZ3BDSS9wNU01MWNVNEJDOUE9PSIsInZhbHVlIjoiaFZsQmJLaVRjRllleHpUVDJNRHhyQT09IiwibWFjIjoiMWIwNzVjOWRmY2EzOGU3ZTQ1MmRkMjYzZTk4MGY3YzBiODI2MjFjNTU5ODQwNGM3NzZjYWE3N2JlNWU2NWFmNyJ9';
         // $crypt_str=Crypt::encrypt($str);
-        if(Crypt::decrypt($crypt_str)==$str){
-            return '密码正确';
-        }
+        // if(Crypt::decrypt($crypt_str)==$str){
+        //     return '密码正确';
+        // }
         //return $crypt_str;
+        return Crypt::encrypt($str);
     }
 
     //后台首页
