@@ -42,25 +42,27 @@
                                       <input type="checkbox" lay-filter="checkall" name="" lay-skin="primary">
                                     </th>
                                     <th>ID</th>
-                                    <th>角色名称</th>
+                                    <th>权限名称</th>
+                                    <th>权限路由</th>
                                     <th>操作</th></tr>
                                 </thead>
                                 <tbody>
-                                  @foreach($role as $v)
+                                  @foreach($permission as $v)
                                   <tr>
                                     <td>
-                                      <input type="checkbox" name="id" value="{{$v->user_id}}"   lay-skin="primary" data-id='{{$v->id}}'> 
+                                      <input type="checkbox" name="id" value="{{$v->id}}"   lay-skin="primary" data-id='{{$v->id}}'> 
                                     </td>
                                     <td>{{$v->id}}</td>
-                                    <td>{{$v->role_name}}</td>
+                                    <td>{{$v->per_name}}</td>
+                                    <td>{{$v->per_url}}</td>
                                     <td class="td-manage">
                                       <!-- <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
                                       </a> -->
-                                      <a title="授权" href="{{url('admin/role/auth/'.$v->id)}}">
+                                      <!-- <a title="授权" href="{{url('admin/role/auth/'.$v->id)}}">
                                         <i class="layui-icon">&#xe612;</i>
-                                      </a>
-                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/role/'.$v->id.'/edit')}}',600,400)" href="javascript:;">
+                                      </a> -->
+                                      <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/permission/'.$v->id.'/edit')}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>
                                       <!-- <a onclick="xadmin.open('修改密码','member-password.html',600,400)" title="修改密码" href="javascript:;">
@@ -137,7 +139,7 @@
       /*用户-删除*/
       function member_del(obj,id){
           layer.confirm('确认要删除吗？',function(index){
-            $.post('/admin/role/'+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
+            $.post('/admin/permission/'+id,{"_method":"delete","_token":"{{csrf_token()}}"},function(data){
                 // console.log(data);
                 if(data.status==0){
                   $(obj).parents("tr").remove();
@@ -181,7 +183,7 @@
         
         layer.confirm('确认要删除吗？',function(index){
 
-          $.get('/admin/role/del',{'ids':ids},function(data){
+          $.get('/admin/permission/del',{'ids':ids},function(data){
               if(data.status==0){
                 $(".layui-form-checked").not('.header').parents('tr').remove();
                 layer.msg(data.message,{icon:6,time:1000});

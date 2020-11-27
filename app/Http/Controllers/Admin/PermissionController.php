@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\Permission;
 
 class PermissionController extends Controller
 {
@@ -14,7 +15,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
-        //
+        //1.获取所有的角色数据
+        $permission=Permission::get();
+        //2.返回角色视图
+        return view('admin.permission.member-list',compact('permission'));
     }
 
     /**
@@ -22,9 +26,9 @@ class PermissionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('admin.permission.member-add');
     }
 
     /**
@@ -57,7 +61,8 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $permission=Permission::find($id);
+        return view('admin/permission/member-edit',compact('permission'));
     }
 
     /**
@@ -69,7 +74,31 @@ class PermissionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //1.根据id获取要修改的记录
+        $permission=Permission::find($id);
+        //2.获取要修改成的角色名
+
+        $permissionname=$request->input('per_name');
+
+        $permissionurl=$request->input('per_url');
+
+        $permission->per_name=$permissionname;
+
+        $permission->per_url=$permissionurl;
+
+        $res=$permission->save();
+        if($res){
+            $data=[
+                'status'=>0,
+                'message'=>'修改成功',
+            ];
+        }else{
+            $data=[
+                'status'=>1,
+                'message'=>'修改失败',
+            ];
+        }
+        return $data;
     }
 
     /**
@@ -80,6 +109,19 @@ class PermissionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permission=Permission::find($id);
+        $permission=$permission->delete();
+        if($res){
+            $data=[
+                'status'=>0,
+                'message'=>'删除成功',
+            ];
+        }else{
+            $data=[
+                'status'=>1,
+                'message'=>'删除失败',
+            ];
+        }
+        return $data;
     }
 }
