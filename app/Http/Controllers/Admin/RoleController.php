@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Model\Role;
 use App\Model\Permission;
+use DB;
 
 class RoleController extends Controller
 {
@@ -29,10 +30,20 @@ class RoleController extends Controller
     }
 
     //处理授权
-    public function doAuth($request)
+    public function doAuth(Request $request)
     {   
         $input=$request->except('_token');
-        dd($input);
+        // dd($input);
+
+        //先删除当前角色已有权限
+        DB::table('role_permission')->where('role_id',$input['role_id'])->delete();
+        //添加新授予的权限
+        if(!empty($input['permission_id'])){
+            foreach($input['permission_id'] as $v){
+                DB::table('role_permission')->insert(['role_id'=>$input['role_id'],'permission_id'=>$v]);
+            }
+        }
+        return redirect('admin/role');
     }
 
 

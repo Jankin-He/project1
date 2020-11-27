@@ -19,14 +19,14 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="{{url('admin/role/doauth')}}" method="post">
+                <form class="layui-form" action="{{url('admin/user/doauth')}}" method="post">
                 {{csrf_field()}}
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
-                            <span class="x-red">*</span>角色名称</label>
+                            <span class="x-red">*</span>用户名</label>
                         <div class="layui-input-inline">
-                            <input type="hidden" name="role_id" value="{{$role->id}}" />
-                            <input type="text" id="L_email" value="{{$role->role_name}}" name="role_name" required="" lay-verify="" autocomplete="off" class="layui-input"></div>
+                            <input type="hidden" name="user_id" value="{{$user->user_id}}" />
+                            <input type="text" id="L_email" value="{{$user->user_name}}" name="user_name" required="" lay-verify="" autocomplete="off" class="layui-input"></div>
                         <div class="layui-form-mid layui-word-aux">
                             <span class="x-red">*</span>
                         </div>
@@ -36,11 +36,11 @@
                         <label for="L_email" class="layui-form-label">
                             <span class="x-red">*</span>权限列表</label>
                         <div class="layui-input-inline" style="width:600px;">
-                        @foreach($perms as $v)
-                            @if(in_array($v->id,$own_pers))
-                            <input type="checkbox" checked name="permission_id[]" title="{{$v->per_name}}" value="{{$v->id}}" lay-skin="primary">
+                        @foreach($role as $v)
+                            @if(in_array($v->id,$own_roles))
+                            <input type="checkbox" checked name="role_id[]" title="{{$v->role_name}}" value="{{$v->id}}" lay-skin="primary">
                             @else
-                            <input type="checkbox" name="permission_id[]" title="{{$v->per_name}}" value="{{$v->id}}" lay-skin="primary">
+                            <input type="checkbox" name="role_id[]" title="{{$v->role_name}}" value="{{$v->id}}" lay-skin="primary">
                             @endif
                         @endforeach
                         </div>

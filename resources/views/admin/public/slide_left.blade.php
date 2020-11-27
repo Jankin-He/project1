@@ -4,9 +4,9 @@
                 <ul id="nav">
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i>
+                            <i class="layui-icon" lay-tips="用户管理">&#xe770;</i>
                             <cite>用户管理</cite>
-                            <i class="iconfont nav_right">&#xe697;</i></a>
+                            <i class="layui-icon">&#xe602;</i></a>
                         <ul class="sub-menu">
                             <!-- <li>
                                 <a onclick="xadmin.add_tab('统计页面','{{url('admin/welcome1')}}')">
@@ -15,7 +15,7 @@
                             </li> -->
                             <li>
                                 <a onclick="xadmin.add_tab('用户列表','{{url('admin/memberlist')}}')">
-                                    <i class="iconfont">&#xe6a7;</i>
+                                    <i class="layui-icon">&#xe602;</i>
                                     <cite>用户列表</cite></a>
                             </li>
                             <!-- <li>
@@ -50,9 +50,9 @@
                     </li>
                     <li>
                         <a href="javascript:;">
-                            <i class="iconfont left-nav-li" lay-tips="会员管理">&#xe6b8;</i>
+                            <i class="layui-icon" lay-tips="角色管理">&#xe66f;</i>
                             <cite>角色管理</cite>
-                            <i class="iconfont nav_right">&#xe697;</i></a>
+                            <i class="layui-icon">&#xe602;</i></a>
                         <ul class="sub-menu">
                             <!-- <li>
                                 <a onclick="xadmin.add_tab('统计页面','{{url('admin/welcome1')}}')">
@@ -61,12 +61,12 @@
                             </li> -->
                             <li>
                                 <a onclick="xadmin.add_tab('角色列表','{{url('admin/role')}}')">
-                                    <i class="iconfont">&#xe6a7;</i>
+                                    <i class="layui-icon">&#xe602;</i>
                                     <cite>角色列表</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('添加角色','{{url('admin/role/create')}}')">
-                                <i class="iconfont">&#xe6a7;</i>
+                                <i class="layui-icon">&#xe602;</i>
                                 <cite>添加角色</cite></a>
                             </li>
                             <!-- <li>

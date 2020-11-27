@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Crypt;
 use App\Model\User;
+use App\Model\Role;
+use DB;
 
 class UserController extends Controller
 {
@@ -16,6 +18,44 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     //获取授权页面
+    public function auth($id){
+
+        //获取当前角色
+        $user=User::find($id);
+        //获取所有的权限列表
+        $role=Role::get();
+
+        //获取当前角色拥有的权限
+        $own_role=$user->role;
+        // dd($own_perm);
+        //角色拥有的权限的id
+        $own_roles=[];
+        foreach($own_role as $v){
+            $own_roles[] = $v->id;
+        }
+        return view('admin.user.auth',compact('user','role','own_roles'));
+    }
+
+    //处理授权
+    public function doAuth(Request $request)
+    {   
+        $input=$request->except('_token');
+        // dd($input);
+
+        //先删除当前用户已有角色
+        DB::table('user_role')->where('user_id',$input['user_id'])->delete();
+        //添加新授予的权限
+        if(!empty($input['role_id'])){
+            foreach($input['role_id'] as $v){
+                DB::table('user_role')->insert(['user_id'=>$input['user_id'],'role_id'=>$v]);
+            }
+        }
+        return redirect('admin/user');
+    }
+
+
     public function index(Request $request)
     {
         //1.获取提交的请求参数

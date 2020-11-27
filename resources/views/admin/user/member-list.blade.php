@@ -88,6 +88,9 @@
                                       <!-- <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
                                         <i class="layui-icon">&#xe601;</i>
                                       </a> -->
+                                      <a title="授权" href="{{url('admin/user/auth/'.$v->user_id)}}">
+                                        <i class="layui-icon">&#xe612;</i>
+                                      </a>
                                       <a title="编辑"  onclick="xadmin.open('编辑','{{url('admin/user/'.$v->user_id.'/edit')}}',600,400)" href="javascript:;">
                                         <i class="layui-icon">&#xe642;</i>
                                       </a>

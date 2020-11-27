@@ -59,5 +59,9 @@ route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],fu
     Route::get('role/auth/{id}','RoleController@auth');
     Route::post('role/doauth','RoleController@doAuth');
 
+    //用户授权角色路由
+    Route::get('user/auth/{id}','UserController@auth');
+    Route::post('user/doauth','UserController@doAuth');
+
 });
 
