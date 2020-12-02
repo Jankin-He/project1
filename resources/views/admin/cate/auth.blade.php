@@ -19,13 +19,31 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="{{url('admin/role')}}" method="post">
+                <form class="layui-form" action="{{url('admin/user/doauth')}}" method="post">
                 {{csrf_field()}}
                     <div class="layui-form-item">
                         <label for="L_email" class="layui-form-label">
-                            <span class="x-red">*</span>角色名称</label>
+                            <span class="x-red">*</span>用户名</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="L_email" name="role_name" required="" lay-verify="" autocomplete="off" class="layui-input"></div>
+                            <input type="hidden" name="user_id" value="{{$user->user_id}}" />
+                            <input type="text" id="L_email" value="{{$user->user_name}}" name="user_name" required="" lay-verify="" autocomplete="off" class="layui-input"></div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label for="L_email" class="layui-form-label">
+                            <span class="x-red">*</span>权限列表</label>
+                        <div class="layui-input-inline" style="width:600px;">
+                        @foreach($role as $v)
+                            @if(in_array($v->id,$own_roles))
+                            <input type="checkbox" checked name="role_id[]" title="{{$v->role_name}}" value="{{$v->id}}" lay-skin="primary">
+                            @else
+                            <input type="checkbox" name="role_id[]" title="{{$v->role_name}}" value="{{$v->id}}" lay-skin="primary">
+                            @endif
+                        @endforeach
+                        </div>
                         <div class="layui-form-mid layui-word-aux">
                             <span class="x-red">*</span>
                         </div>
@@ -33,7 +51,8 @@
                     
                     <div class="layui-form-item">
                         <label for="L_repass" class="layui-form-label"></label>
-                        <button class="layui-btn" lay-filter="add" lay-submit="">添加</button></div>
+                        <button class="layui-btn" lay-filter="add" lay-submit="">授权</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -49,8 +68,7 @@
                     // return false;
                 });
 
-            });
-        </script>
+            });</script>
         <script>var _hmt = _hmt || []; (function() {
                 var hm = document.createElement("script");
                 hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";

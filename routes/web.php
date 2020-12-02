@@ -27,7 +27,7 @@ route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     route::get('jiami','LoginController@jiami');
 });
 
-route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],function(){
+route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['isLogin']],function(){
     //后台首页路由
     route::get('index','LoginController@index');
     //后台欢迎页
@@ -66,5 +66,10 @@ route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>'isLogin'],fu
     Route::get('user/auth/{id}','UserController@auth');
     Route::post('user/doauth','UserController@doAuth');
 
+    //分类路由
+    Route::resource('cate','CateController');
+
 });
+
+Route::get('noaccess','Admin\LoginController@noaccess');
 

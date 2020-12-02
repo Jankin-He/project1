@@ -39,7 +39,18 @@ class PermissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //1.获取表单提交数据
+        $input=$request->except('_token');
+        // dd($input);
+        //2.进行表单验证
+
+        //3.将数据添加到role表中
+        $res=Permission::create($input);
+        if($res){
+            return redirect('admin/permission');
+        }else{
+            return back()->with('msg','添加失败');
+        }
     }
 
     /**
@@ -110,7 +121,7 @@ class PermissionController extends Controller
     public function destroy($id)
     {
         $permission=Permission::find($id);
-        $permission=$permission->delete();
+        $res=$permission->delete();
         if($res){
             $data=[
                 'status'=>0,

@@ -21,19 +21,34 @@
             <div class="layui-row">
                 <form class="layui-form">
                     <div class="layui-form-item">
+                        <label for="L_email" class="layui-form-label">
+                            <span class="x-red">*</span>用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="hidden" name="uid" value="{{$user->user_id}}"/>
+                            <input type="text" id="L_username" value="{{$user->user_name}}" name="user_name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">
+                            <span class="x-red">*</span>将会成为您唯一的登入名
+                        </div>
                         <div class="layui-form-item">
-                            <label for="L_email" class="layui-form-label">
-                                <span class="x-red">*</span>权限名称</label>
+                            <label for="L_username" class="layui-form-label">
+                                <span class="x-red">*</span>邮箱</label>
                             <div class="layui-input-inline">
-                                <input type="hidden" name="uid" value="{{$permission->id}}"/>
-                                <input type="text" id="L_prename" value="{{$permission->per_name}}" name="per_name" required="" lay-verify="nikename" autocomplete="off" class="layui-input">
+                                <input type="text" id="L_email" name="email" value="{{$user->email}}" required="" lay-verify="email" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label for="L_email" class="layui-form-label">
-                                <span class="x-red">*</span>权限路由</label>
+                            <label for="L_pass" class="layui-form-label">
+                                <span class="x-red">*</span>密码</label>
                             <div class="layui-input-inline">
-                                <input type="text" id="L_perurl" style="width: 300px" value="{{$permission->per_url}}" name="per_url" required="" lay-verify="nikeweb" autocomplete="off" class="layui-input">
+                                <input type="password" id="L_pass" name="pass" required="" lay-verify="pass" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                        <div class="layui-form-item">
+                            <label for="L_repass" class="layui-form-label">
+                                <span class="x-red">*</span>确认密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" id="L_repass" name="repass" required="" lay-verify="repass" autocomplete="off" class="layui-input">
                             </div>
                         </div>
                         <div class="layui-form-item">
@@ -53,17 +68,16 @@
                 //自定义验证规则
                 form.verify({
                     nikename: function(value) {
-                        if (value.length < 1) {
-                            return '权限名至少得1个字符啊';
+                        if (value.length < 5) {
+                            return '昵称至少得5个字符啊';
                         }
                     },
-                    // nikeweb: [/^([hH][tT]{2}[pP]:\/\/)(([A-Za-z0-9-~]+).)+([A-Za-z0-9-~\\/])+$/,'权限路由必须是网址'],
-                    // pass: [/(.+){6,12}$/, '密码必须6到12位'],
-                    // repass: function(value) {
-                    //     if ($('#L_pass').val() != $('#L_repass').val()) {
-                    //         return '两次密码不一致';
-                    //     }
-                    // }
+                    pass: [/(.+){6,12}$/, '密码必须6到12位'],
+                    repass: function(value) {
+                        if ($('#L_pass').val() != $('#L_repass').val()) {
+                            return '两次密码不一致';
+                        }
+                    }
                 });
 
                 //监听提交
@@ -75,7 +89,7 @@
                     var uid=$("input[name='uid']").val();
                     $.ajax({
                         type:'PUT',
-                        url:'/admin/permission/'+uid,
+                        url:'/admin/user/'+uid,
                         dataType:'json',
                         headers:{
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

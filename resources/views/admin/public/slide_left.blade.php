@@ -120,34 +120,29 @@
                                 <i class="layui-icon">&#xe602;</i>
                                 <cite>添加权限</cite></a>
                             </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="javascript:;">
+                            <i class="layui-icon" lay-tips="权限管理">&#xe66f;</i>
+                            <cite>分类管理</cite>
+                            <i class="layui-icon">&#xe602;</i></a>
+                        <ul class="sub-menu">
                             <!-- <li>
-                                <a onclick="xadmin.add_tab('用户列表(动态表格)','{{url('admin/memberlist1')}}',true)">
+                                <a onclick="xadmin.add_tab('统计页面','{{url('admin/welcome1')}}')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>用户列表(动态表格)</cite></a>
-                            </li>
-                            <li>
-                                <a onclick="xadmin.add_tab('用户删除','member-del.html')">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>用户删除</cite></a>
-                            </li>
-                            <li>
-                                <a href="javascript:;">
-                                    <i class="iconfont">&#xe70b;</i>
-                                    <cite>用户管理</cite>
-                                    <i class="iconfont nav_right">&#xe697;</i></a>
-                                <ul class="sub-menu">
-                                    <li>
-                                        <a onclick="xadmin.add_tab('用户删除','member-del.html')">
-                                            <i class="iconfont">&#xe6a7;</i>
-                                            <cite>用户删除</cite></a>
-                                    </li>
-                                    <li>
-                                        <a onclick="xadmin.add_tab('等级管理','member-list1.html')">
-                                            <i class="iconfont">&#xe6a7;</i>
-                                            <cite>等级管理</cite></a>
-                                    </li>
-                                </ul>
+                                    <cite>统计页面</cite></a>
                             </li> -->
+                            <li>
+                                <a onclick="xadmin.add_tab('权限列表','{{url('admin/cate')}}')">
+                                    <i class="layui-icon">&#xe602;</i>
+                                    <cite>分类列表</cite></a>
+                            </li>
+                            <li>
+                                <a onclick="xadmin.add_tab('添加权限','{{url('admin/cate/create')}}')">
+                                <i class="layui-icon">&#xe602;</i>
+                                <cite>添加分类</cite></a>
+                            </li>
                         </ul>
                     </li>
                     <!-- <li>

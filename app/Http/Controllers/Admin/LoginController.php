@@ -69,7 +69,7 @@ class LoginController extends Controller
             return redirect('/admin/login')->withErrors($validator)->withInput();
         }
         //4.保存用户信息到session中
-        session()->put('user','$user');
+        session()->put('user',$user);
         //5.跳转到后台首页
         return redirect('/admin/index');
     }
@@ -135,5 +135,9 @@ class LoginController extends Controller
     //图标对应字体
     public function unicode(){
         return view('admin/unicode');
+    }
+    //没有权限对应的跳转
+    public function noaccess(){
+        return view('errors/noaccess');
     }
 }
